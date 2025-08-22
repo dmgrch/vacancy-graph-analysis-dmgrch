@@ -1,6 +1,6 @@
 import unittest
-import pandas as pd
-import networkx as nx
+import pandas as pd  # type: ignore
+import networkx as nx  # type: ignore
 
 from network import create_network, get_keywords
 
@@ -14,7 +14,7 @@ class NetworkTestCase(unittest.TestCase):
         df = pd.DataFrame([["data analyst",
                             "data scientist",
                             "web developer",
-                            "backend developer"]], index=["job"]).T
+                            "backend developer"]], index=["title"]).T
 
         df["keywords"] = [["python", "bi systems", "dataviz", "flask"],
                           ["python", "pytorch", "machine learning", "dataviz", "bi systems"],
@@ -38,7 +38,7 @@ class NetworkTestCase(unittest.TestCase):
 
         self.assertTrue(df_with_keywords.iloc[:,[0,2]].equals(KDF))
 
-    
+
     def test_pipeline(self):
         df_with_keywords = get_keywords(DF, 5)
         edges = create_network(df_with_keywords)
